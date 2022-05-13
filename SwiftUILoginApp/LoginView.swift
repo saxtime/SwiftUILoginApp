@@ -9,14 +9,16 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var user: UserManager
-    @State private var name = ""
+    @AppStorage("isRegister") private var name = ""
+//    @AppStorage("isRegister") var isRegister = false
+    
     var body: some View {
         VStack{
             HStack{
                 Text(" ")
                 TextField("Type your name...", text: $name)
                     .multilineTextAlignment(.center)
-                Text("3")
+                Text("\(name.count)")
                     .foregroundColor(name.count > 2 ? .green : .red )
             }
             Button(action: registerUser) {
@@ -30,8 +32,8 @@ struct LoginView: View {
     
     private func registerUser() {
         if !name.isEmpty {
-            user.name = name
-            user.isRegister.toggle()
+            user.user.name = name
+            user.user.isRegister.toggle()
         }
     }
 }

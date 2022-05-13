@@ -11,7 +11,7 @@ struct FirstView: View {
     @EnvironmentObject var user: UserManager
     
     var body: some View {
-        if user.isRegister {
+        if user.user.isRegister {
             ContentView()
         } else {
             LoginView()
